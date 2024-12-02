@@ -1,3 +1,5 @@
+package main;
+
 public class Tool {
     private String toolCode;
     private ToolType type;

@@ -1,3 +1,5 @@
+package main;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -49,8 +51,44 @@ public class RentalAgreement {
         return days;
     }
 
+    public int getRentalDays() {
+        return rentalDays;
+    }
+
+    public double getDiscountPercent() {
+        return discountPercent;
+    }
+
+    public LocalDate getCheckoutDate() {
+        return checkoutDate;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public double getDailyRentalCharge() {
+        return dailyRentalCharge;
+    }
+
+    public int getChargeDays() {
+        return chargeDays;
+    }
+
+    public double getPreDiscountCharge() {
+        return preDiscountCharge;
+    }
+
+    public double getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public double getFinalCharge() {
+        return finalCharge;
+    }
+
     public void print() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         System.out.println("Tool code: " + tool.getToolCode());
         System.out.println("Tool type: " + tool.getType());
         System.out.println("Tool brand: " + tool.getBrand());
@@ -75,5 +113,27 @@ public class RentalAgreement {
                 dateStr = scanner.nextLine();
             }
         }
+    }
+
+    public Tool getTool() {
+        return tool;
+    }
+
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        StringBuilder returnStr =  new StringBuilder();
+        returnStr.append("Tool code: " + tool.getToolCode()+"\n");
+        returnStr.append("Tool type: " + tool.getType()+"\n");
+        returnStr.append("Tool brand: " + tool.getBrand()+"\n");
+        returnStr.append("Rental days: " + rentalDays+"\n");
+        returnStr.append("Check out date: " + checkoutDate.format(formatter)+"\n");
+        returnStr.append("Due date: " + dueDate.format(formatter)+"\n");
+        returnStr.append(String.format("Daily rental charge: $%.2f%n", dailyRentalCharge));
+        returnStr.append("Charge days: " + chargeDays+"\n");
+        returnStr.append(String.format("Pre-discount charge: $%.2f%n", preDiscountCharge));
+        returnStr.append(String.format("Discount percent: %d%%%n", (int) discountPercent));
+        returnStr.append((String.format("Discount amount: $%.2f%n", discountAmount)));
+        returnStr.append((String.format("Final charge: $%.2f%n", finalCharge)));
+        return returnStr.toString();
     }
 }
